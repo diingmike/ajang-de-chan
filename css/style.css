@@ -469,15 +469,10 @@ header .container
 	position: absolute;
 	inset: 0;
 	z-index: 0;
-	background-size: cover;
-	background-position: center;
-	animation: hero-settle 8s ease-out forwards;
-}
 
-@keyframes hero-settle
-{
-	from { transform: scale(1.08); }
-	to   { transform: scale(1); }
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: right bottom;
 }
 
 .hero-overlay
@@ -622,6 +617,30 @@ header .container
 /* hero end */
 
 /* hero responsive */
+
+@media (max-width: 900px)
+{
+	.hero
+	{
+		background: var(--black);
+	}
+
+	.hero-content
+	{
+		justify-content: flex-end;
+	}
+
+	.hero-overlay
+	{
+		background: linear-gradient(
+			180deg,
+			rgba(10, 10, 10, 0) 0%,
+			rgba(10, 10, 10, 0.2) 40%,
+			rgba(10, 10, 10, 0.92) 78%,
+			rgba(10, 10, 10, 0.96) 100%
+		);
+	}
+}
 
 @media (max-width: 768px)
 {
