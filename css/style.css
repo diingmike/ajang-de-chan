@@ -21,6 +21,7 @@ Date of Creation: Thurs, October 15, 2026;
 	--dark-gold: #FFA100;
 	--white: #F1F2F6;
 	--black: #1E272E;
+	--hero-bg: #8d95a1;
 }
 
 *, *::before, *::after 
@@ -462,18 +463,28 @@ header .container
 	height: 100svh;
 	min-height: 640px;
 	overflow: hidden;
+	background: linear-gradient(90deg, #7c848f 0%, var(--hero-bg) 100%);
 }
 
 .hero-img
 {
 	position: absolute;
-	inset: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 50%;
 	z-index: 0;
-
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: right bottom;
+	background-position: center top;
+
+	/* softens the photo's left edge into the backdrop colour */
+	-webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+	mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
 }
+
+/* one continuous tint across both halves, so there is no visible seam
+   and the white text stays readable */
 
 .hero-overlay
 {
@@ -481,10 +492,10 @@ header .container
 	inset: 0;
 	z-index: 1;
 	background: linear-gradient(
-		105deg,
-		rgba(10, 10, 10, 0.85) 0%,
-		rgba(10, 10, 10, 0.55) 55%,
-		rgba(10, 10, 10, 0.30) 100%
+		90deg,
+		rgba(15, 20, 30, 0.82) 0%,
+		rgba(15, 20, 30, 0.64) 50%,
+		rgba(15, 20, 30, 0.42) 100%
 	);
 }
 
@@ -620,9 +631,11 @@ header .container
 
 @media (max-width: 900px)
 {
-	.hero
+	.hero-img
 	{
-		background: var(--black);
+		left: 0;
+		-webkit-mask-image: none;
+		mask-image: none;
 	}
 
 	.hero-content
@@ -634,10 +647,10 @@ header .container
 	{
 		background: linear-gradient(
 			180deg,
-			rgba(10, 10, 10, 0) 0%,
-			rgba(10, 10, 10, 0.2) 40%,
-			rgba(10, 10, 10, 0.92) 78%,
-			rgba(10, 10, 10, 0.96) 100%
+			rgba(10, 10, 10, 0.45) 0%,
+			rgba(10, 10, 10, 0.5) 40%,
+			rgba(10, 10, 10, 0.93) 78%,
+			rgba(10, 10, 10, 0.97) 100%
 		);
 	}
 }
@@ -679,6 +692,11 @@ header .container
 		min-height: 560px;
 	}
 
+	.hero-img
+	{
+		background-position: center;
+	}
+
 	.hero .container
 	{
 		padding: 0 16px;
@@ -717,14 +735,6 @@ header .container
 	{
 		width: 100%;
 		text-align: center;
-	}
-}
-
-@media (prefers-reduced-motion: reduce)
-{
-	.hero-img
-	{
-		animation: none;
 	}
 }
 
